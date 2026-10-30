@@ -1,8 +1,22 @@
 version: '5.0'
 
 actions:
-  generate_dataset:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
+
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## DO NOT EDIT project.yaml DIRECTLY 
+  ## This file is created by create_project_actions.R 
+  ## Edit and run create_project_actions.R to update the project.yaml 
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  
+  ## Generate dataset 
+
+  generate_dataset_shingrix_main:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/shingrix/dataset_shingrix_main.arrow
+      -- 
+      --threshold_date 2023-09-01 
+      --min_dob 1948-09-01 
+      --max_dob 1968-09-01
+      --vaccine_name shingrix
     outputs:
       highly_sensitive:
-        dataset: output/dataset.csv.gz
+        data: output/shingrix/dataset_shingrix_main.arrow
