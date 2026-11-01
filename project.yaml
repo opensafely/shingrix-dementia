@@ -12,11 +12,19 @@ actions:
 
   generate_dataset_shingrix_main:
     run: ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/shingrix/dataset_shingrix_main.arrow
-      -- 
-      --threshold_date 2023-09-01 
-      --min_dob 1948-09-01 
-      --max_dob 1968-09-01
-      --vaccine_name shingrix
+      --dummy-data-file analysis/dummy_data/dummy_dataset_shingrix.arrow -- --threshold_date 2023-09-01 
+      --min_dob 1948-09-01 --max_dob 1968-09-01 --vaccine_name shingrix
     outputs:
       highly_sensitive:
         data: output/shingrix/dataset_shingrix_main.arrow
+
+  ## Check Shingrix coverage (no exclusions) 
+
+  coverage_shingrix:
+    run: r:v2 analysis/shingrix/0_shingrix_coverage.R
+    needs:
+    - generate_dataset_shingrix_main
+    outputs:
+      moderately_sensitive:
+        csv: output/shingrix/coverage/*.csv
+        png: output/shingrix/coverage/*.png
