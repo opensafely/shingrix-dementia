@@ -1,14 +1,14 @@
 sdc.rounding <- function(x, threshold){
   case_when(
-    x <= 7 ~ 0,
-    x > 7 ~ round(x / threshold) * threshold
+    x < 7.5 ~ 0,
+    x >= 7.5 ~ round(x / threshold) * threshold
   )
 }
 
 roundmid_any <- function(x, to = 1) {
   # like ceiling_any, but centers on (integer) midpoint of the rounding points
   ceiling(x / to) * to - (floor(to / 2) * (x != 0))
-}
+} 
 
 
 floor_any <- function(x, to = 1) {
