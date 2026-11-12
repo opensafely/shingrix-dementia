@@ -63,13 +63,49 @@ df_analysis <- read_feather(here(
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Cumulative uptake of Shingrix dose 1 by age in months up to one year after the threshold date
-cumulative_events(df_analysis |> filter(between(age, 64, 65)), "month_of_birth_fct", precision=7, start_date = threshold_date, index_date = threshold_date, 52*3, "shingrix_date_1", "Shingrix dose 1 by month")
+cumulative_events(
+  df_analysis |> filter(between(age, 64, 65)),
+  "month_of_birth_fct",
+  precision = 7,
+  start_date = threshold_date,
+  index_date = threshold_date,
+  as.integer(365.25 * 3),
+  "shingrix_date_1",
+  "Shingrix dose 1 by month"
+)
 
 # Cumulative uptake of Shingrix dose 1 by eligibility (born either side of threshold date)
-cumulative_events(df_analysis, "eligibility", precision=7, start_date = threshold_date, index_date = threshold_date, 52*3, "shingrix_date_1", "Shingrix dose 1")
+cumulative_events(
+  df_analysis,
+  "eligibility",
+  precision = 7,
+  start_date = threshold_date,
+  index_date = threshold_date,
+  as.integer(365.25 * 3),
+  "shingrix_date_1",
+  "Shingrix dose 1"
+)
 
 # Cumulative uptake of Shingrix dose 2 by age in months up to one year after the threshold date
-cumulative_events(df_analysis |> filter(between(age, 64, 65)), "month_of_birth_fct", precision=7, start_date = threshold_date, index_date = threshold_date, 52*3, "shingrix_date_2", "Shingrix dose 2 by month")
+cumulative_events(
+  df_analysis |> filter(between(age, 64, 65)),
+  "month_of_birth_fct",
+  precision = 7,
+  start_date = threshold_date,
+  index_date = threshold_date,
+  as.integer(365.25 * 3),
+  "shingrix_date_2",
+  "Shingrix dose 2 by month"
+)
 
 # Cumulative uptake of Shingrix dose 2 by eligibility (born either side of threshold date)
-cumulative_events(df_analysis, "eligibility", precision=7, start_date = threshold_date, index_date = threshold_date, 52*3, "shingrix_date_2", "Shingrix dose 2")
+cumulative_events(
+  df_analysis,
+  "eligibility",
+  precision = 7,
+  start_date = threshold_date,
+  index_date = threshold_date,
+  as.integer(365.25 * 3),
+  "shingrix_date_2",
+  "Shingrix dose 2"
+)
